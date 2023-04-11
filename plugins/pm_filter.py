@@ -58,7 +58,7 @@ async def fil_mod(client, message):
       else:
           await m.edit("𝚄𝚂𝙴 :- /autofilter on 𝙾𝚁 /autofilter off")
 
-@Client.on_message((filters.group) & filters.text & filters.incoming)
+@Client.on_message((filters.private & filters.group) & filters.text & filters.incoming)
 async def give_filter(client,message):
     await global_filters(client, message)
     group_id = message.chat.id
@@ -107,20 +107,7 @@ async def give_filter(client,message):
         else:
             await auto_filter(client, message)
 
-@Client.on_message(filters.private & filters.text & filters.incoming)
-async def give_filter(client, message):
-    if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except:
-            return
-        btn = [[
-            InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
-        ]]
-        await message.reply("**Please Join My Updates Channel to use this Bot!**", reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await auto_filter(client, message)
-        
+
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
