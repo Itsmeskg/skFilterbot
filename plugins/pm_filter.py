@@ -108,14 +108,19 @@ async def give_filter(client,message):
             await auto_filter(client, message)
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
-async def pm_text(bot, message):
-    content = message.text
-    user = message.from_user.first_name
-    user_id = message.from_user.id
-    if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
-    await message.reply_text("<b>Hᴇʏ Dᴜᴅᴇ🥰,\n\nYᴏᴜ ᴄᴀɴ'ᴛ Gᴇᴛ ᴍᴏᴠɪᴇ ʜᴇʀᴇ........\nAꜱᴋ ᴍᴏᴠɪᴇ ᴏɴ ᴏᴜʀ ɢʀᴏᴜᴘ\nCʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ 𝚓ᴏɪɴ👇</b>",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ​ ", url=f"https://t.me/+LcBdNg1qoYlmMTA1")]]))
-    await bot.send_message(chat_id=ADMINS,text=f"<b>#PM_MSG\n\nName : {user}\n\nID : {user_id}\n\nMessage : {content}</b>")
-
+async def give_filter(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except:
+            return
+        btn = [[
+            InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
+        ]]
+        await message.reply("**Please Join My Updates Channel to use this Bot!**", reply_markup=InlineKeyboardMarkup(btn))
+    else:
+        await auto_filter(client, message)
+        
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
