@@ -1,5 +1,5 @@
 {
-    "name": "PETER-PARKER-BOT",
+    "name": "SKG-FINDER-BOT",
     "description": "When you going to send file on telegram channel this bot will save that in database, So you can search that easily in inline mode",
     "logo": "https://graph.org/file/f65110f85f548ef11aed7.jpg",
     "stack": "container",
@@ -20,15 +20,16 @@
     "repository": "https://github.com/alappu280/Filterbot1",
     "env": {
         "BOT_TOKEN": {
-            "description": "Your bot token.",
+            "description": "Your bot token.", "6141085862:AAFsXBdmrA63H8M5vgJZXLafrTjqi_jd5wk"
             "required": true
         },
         "API_ID": {
-            "description": "Get this value from https://my.telegram.org",
+            "description": "Get this value from https://my.telegram.org", "
+29081561"
             "required": true
         },
         "API_HASH": {
-            "description": "Get this value from https://my.telegram.org",
+            "description": "Get this value from https://my.telegram.org", "88edb0704a60de7615a0c05a5bd45fe0"
             "required": true
         },
         "CHANNELS": {
@@ -40,11 +41,11 @@
             "required": true
         },
         "PICS": {
-            "description": "Add some telegraph link of pictures .",
+            "description": "Add some telegraph link of pictures .", "https://t.me/skgfinderlog/15"
             "required": false
         },
         "LOG_CHANNEL": {
-            "description": "Bot Logs,Give a channel id with -100xxxxxxx",
+            "description": "Bot Logs,Give a channel id with -1001962521806",
             "required": true
         },
         "AUTH_USERS": {
